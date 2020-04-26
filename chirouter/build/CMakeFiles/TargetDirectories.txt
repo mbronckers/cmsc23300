@@ -1,0 +1,3 @@
+/home/student/networks/chirouter/build/CMakeFiles/edit_cache.dir
+/home/student/networks/chirouter/build/CMakeFiles/rebuild_cache.dir
+/home/student/networks/chirouter/build/CMakeFiles/chirouter.dir
