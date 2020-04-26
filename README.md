@@ -1,4 +1,5 @@
-# cmsc23320
+# cmsc23320 - Networks
+
 Project work for Networks course at the University of Chicago. 
 
 1st project involved implementing the RFC protocol. 
