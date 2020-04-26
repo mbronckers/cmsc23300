@@ -1,0 +1,33 @@
+# Design
+
+# Data structures
+- Global users, global channels, and global list of server_names (needed for registration to check if valid)
+- Local users, local servers connected to you
+- add server_name to user struct to show what server user is connected to (to find users across network)
+    - for WHOIS, you can iterate over global list of users & find the server_name member of the user
+- Add PORT & PASS for that server & server_name to connection struct
+- update USER_STATUS to add negative numbers for server connections states
+- in connection struct, server_name is either the server_name the user is connnected to or it is name of the server
+
+if there are commands with both servers & users as targets, the cmd_handler functions individually should deal with that, not the handle_tokens().
+
+
+# Relaying details 
+
+- Every server has one relay thread & uses conditional variables to be triggered
+- ctx update is sent from server A to all its servers to signal to update CTX
+- Priv_msg to users on same server is executed by the same (listening/servicing) thread, but priv_msg channel always gets sent to the relay thread because it needs to be distributed to all users/servers
+
+- relay thread accesses local users & local servers list to obtain all the fds to send to.
+
+- relay thread gets from ctx->relay_args:
+    - user_origin (name or conn struct)
+    - server_origin
+    - server_msg [constructed already] 
+    - user_msg [also constructed already]
+    - consider how to implement who to send it to.
+    - exclude server flag
+    - exclude user flag
+
+- only accept server if servername is in list & iff then we set the servername field
+- then wait for password and if correct set registered

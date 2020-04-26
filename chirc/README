@@ -1,0 +1,19 @@
+This repository provides the basic source code necessary to get started on the
+chirc project. It also includes several automated tests for students to verify
+the correctness of their implementation.
+
+Please see http://chi.cs.uchicago.edu/chirc/ for a specification of the chirc
+project, including specific assignments, instructions on how to build the 
+project, and on how to run the tests.
+
+Testing:
+
+$ make && py.test --chirc-category CONNECTION_REGISTRATION --chirc-loglevel 2
+$ make && py.test -k [test name]
+$ make && py.test -k [test name] -s
+
+$ ./chirc -o foobar -p 1999 -vv
+$ telnet localhost 1999
+
+$ printf "NICK user1" | nc localhost 23300
+$ (printf "NICK user1"; sync; printf "\r\nUSER user1 * * :User One\r\n") | nc localhost 23300
